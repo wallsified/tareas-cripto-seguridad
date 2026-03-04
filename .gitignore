@@ -212,3 +212,7 @@ __marimo__/
 
 # others
 .DS_store
+
+# latex stuff
+*.aux
+*.out
