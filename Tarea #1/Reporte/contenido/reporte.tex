@@ -1,7 +1,9 @@
 \section{Ejercicios de Código}
 
 Los scripts usados para estos ejercicios fueron creados en Python. Cada uno contiene
-sus propias instrucciones de como deben ser ejecutados.
+sus propias instrucciones de como deben ser ejecutados. Favor de referirse al archivo
+\texttt{README.md} para más detalles sobre la ejecución de los scripts (tanto a nivel
+raiz como a nivel carpeta de la tarea).
 
 \subsection{Cifrado César}
 
@@ -309,3 +311,79 @@ Y obtenemos la frase decifrada \textbf{``uno nomás''}.
 
 
 \subsection{Cifrado Afín}
+
+\begin{enumerate}
+
+\item ¿Qué es el Algoritmo de Euclides?
+
+El \textbf{Algoritmo de Euclides} es un método para calcular el \textbf{Máximo Común Divisor
+(mcd)} de dos enteros $a, b \in \mathbb{Z}$, con $b \neq 0$.
+
+Dados $a, b \in \mathbb{Z}$ con $a \geq b > 0$, se aplica el
+\textbf{algoritmo de división} repetidamente:
+
+\begin{align*}
+    a       &= q_0\, b      + r_0,      \quad 0 \leq r_0 < b      \\
+    b       &= q_1\, r_0    + r_1,      \quad 0 \leq r_1 < r_0    \\
+    r_0     &= q_2\, r_1    + r_2,      \quad 0 \leq r_2 < r_1    \\
+            &\;\vdots                                               \\
+    r_{n-2} &= q_n\, r_{n-1} + r_n,    \quad 0 \leq r_n < r_{n-1}\\
+    r_{n-1} &= q_{n+1}\, r_n + 0
+\end{align*}
+
+El proceso termina cuando el residuo es \textbf{cero}. El último residuo
+no nulo $r_n$ es el $mcd(a,b)$.
+
+\item Prueba de que $r_n = mcd(a,b)$
+
+\begin{proof}
+    Para cada $i \in \{0, 1, \ldots, n\}$, se tiene que $r_i = a - q_0 b$,
+    $r_i = b - q_1 r_0$, $r_i = r_0 - q_2 r_1$, $\ldots$, $r_i = r_{n-2} - q_n r_{n-1}$.
+
+    Por lo tanto, cada $r_i$ es una combinación lineal de $a$ y $b$. En particular,
+    $r_n$ es una combinación lineal de $a$ y $b$.
+
+    Además, cualquier divisor común de $a$ y $b$ también es un divisor común de cada
+    $r_i$, incluyendo a $r_n$. Por lo tanto, el máximo común divisor de $a$ y $b$
+    debe ser menor o igual a cualquier divisor común de $a$ y $b$, incluyendo a
+    $mcd(a,b)$.
+
+    Por otro lado, como $r_n$ es una combinación lineal de $a$ y $b$, cualquier divisor común
+    de $a$ y $b$ también debe ser un divisor común de $r_n$. Por lo tanto, el máximo común
+    divisor de $a$ y $b$ debe ser mayor o igual a cualquier divisor común de $a$ y $b$, incluyendo a $mcd(a,b)$.
+
+    Combinando ambas desigualdades, se concluye que $mcd(a,b) = r_n$.
+\end{proof}
+
+\item Si $a \in Z_m$ es invertible y $mcd(a,m) = 1$. Use la proposición anterior para demostrar:
+
+    \begin{tcolorbox}
+        Sean $A, B \in \{0, 26\}, mcd(A,27)=1$. La aplicación $f(A,B) : \mathbb{Z}_{27} \to \mathbb{Z}_{27}$
+        dada por $f_{(A,B)}x = Ax + B$ es biyectiva.
+    \end{tcolorbox}
+
+    \begin{proof}
+    Sean $x, y \in \mathbb{Z}_{27}$ tales que $f_{(A,B)}(x) = f_{(A,B)}(y)$.
+
+    Entonces:
+    \begin{align*}
+        Ax + B &\equiv Ay + B mod{27} \\
+        Ax     &\equiv Ay     mod{27}.
+    \end{align*}
+
+    Como $A$ es invertible en $\mathbb{Z}_{27}$, multiplicamos ambos lados
+    por $A^{-1}$:
+
+    \[
+        A^{-1}(Ax) \equiv A^{-1}(Ay) mod{27}
+        \implies x \equiv y mod{27}.
+    \]
+
+    Por tanto $x = y$ en $\mathbb{Z}_{27}$, lo que prueba que $f_{(A,B)}$ es \textbf{inyectiva}.
+
+    Luego, como $f_{(A,B)}$ es una función inyectiva entre dos conjuntos finitos del
+    mismo cardinal, es automáticamente \textbf{sobreyectiva}.
+    Por lo tanto, $f_{(A,B)}$ es \textbf{biyectiva}.
+    \end{proof}
+
+\end{enumerate}
