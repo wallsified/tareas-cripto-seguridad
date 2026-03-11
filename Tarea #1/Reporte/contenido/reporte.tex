@@ -1,0 +1,389 @@
+\section{Ejercicios de Código}
+
+Los scripts usados para estos ejercicios fueron creados en Python. Cada uno contiene
+sus propias instrucciones de como deben ser ejecutados. Favor de referirse al archivo
+\texttt{README.md} para más detalles sobre la ejecución de los scripts (tanto a nivel
+raiz como a nivel carpeta de la tarea).
+
+\subsection{Cifrado César}
+
+Para este caso se uso un script que ataca por fuerza bruta para tener todos los desplazamientos
+posibles y asi obtener el texto descifrado. Los resultados fueron los siguientes:
+
+\begin{itemize}
+    \item Nc xkfc gu dgnnc $\rightarrow$ La vida es bella
+    \item Zo qgweidugotio sh jb hsqgsid $\rightarrow$ La criptografía es un secreto
+    \item Jx qzd kfhnp mjwnw f ptx ijqfx xnr ifwxj hzjryf xtgwj ytit hzfrit jwjx ñtajr $\rightarrow$ Es muy facil herir a los demas sin darse cuenta sobre todo cuando eres joven
+\end{itemize}
+
+\subsection{Cifrado Polybius}
+
+En este caso el script tanto cifra como decifra usando dicho método. Estos son los resultados:
+
+\begin{itemize}
+    \item 15 32 45 24 15 33 41 35 34 35 15 44 41 15 43 11 11 34 11 14 24 15 $\rightarrow$
+    El tiempo no espera a nadie.
+
+    \item "Si la felicidad tuviera una forma, tendria forma de cristal, porque puede estar a tu
+    alrededor sin que la notes. Pero si cambias de perspectiva, puede reflejar una luz capaz
+    de iluminarlo todo." $\rightarrow$ 44 24 32 11 21 15 32 24 13 24 14 11 14 45 51 52 24 15 43 11
+    51 34 11 21 35 43 33 11 45 15 34 14 43 24 11 21 35 43 33 11 14 15 13 43 24 44 45 11 32 41 35 43
+    42 51 15 41 51 15 14 15 15 44 45 11 43 11 45 51 11 32 43 15 14 15 14 35 43 44 24 34 42 51 15 32
+    11 34 35 45 15 44 41 15 43 35 44 24 13 11 33 12 24 11 44 14 15 41 15 43 44 41 15 13 45 24 52 11
+    41 51 15 14 15 43 15 21 32 15 25 11 43 51 34 11 32 51 13 11 41 11 14 15 24 32 51 33 24 34 11 43
+    32 35 45 35 14 35
+
+\end{itemize}
+
+\subsection{Método de Kasiski}
+
+
+\section{Ejercicios Resueltos a Mano}
+
+
+\subsection{Cifrado César}
+
+Al igual que con el script, se puede decifrar usando fuerza bruta. Creamos una tabla para ver los
+desplazamientos de las letras para ver que palabra se forma.
+
+\begin{itemize}
+
+\item Para el criptograma ``dqiqo'' hacemos lo siguiente:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{Desplazamiento} & \textbf{D} & \textbf{Q} & \textbf{I} & \textbf{Q} & \textbf{O} & \textbf{Resultado} \\
+\hline
+1  & C & P & H & P & N & cphpn \\
+2  & B & O & G & O & M & bogom \\
+3  & A & N & F & N & L & anfnl \\
+4  & Z & M & E & M & K & zmemk \\
+5  & Y & L & D & L & J & yldlj \\
+6  & X & K & C & K & I & xkcki \\
+7  & W & J & B & J & H & wjbjh \\
+8  & V & I & A & I & G & viaig \\
+9  & U & H & Z & H & F & uhzhf \\
+10 & T & G & Y & G & E & tgyge \\
+11 & S & F & X & F & D & sfxfd \\
+12 & R & E & W & E & C & rewec \\
+13 & Q & D & V & D & B & qdvdb \\
+14 & P & C & U & C & A & pcuca \\
+15 & O & B & T & B & Z & obtbz \\
+16 & N & A & S & A & Y & nasay \\
+17 & M & Z & R & Z & X & mzrzx \\
+18 & L & Y & Q & Y & W & lyqyw \\
+19 & K & X & P & X & V & kxpxv \\
+20 & J & W & O & W & U & jwowu \\
+21 & I & V & N & V & T & ivnvt \\
+22 & H & U & M & U & S & \textbf{humus}\\
+23 & G & T & L & T & R & gtltr \\
+24 & F & S & K & S & Q & fsksq \\
+25 & E & R & J & R & P & erjrp \\
+\hline
+\end{tabular}
+\caption{Fuerza bruta sobre el criptograma ``dqiqo''}
+\label{tab:cesar}
+\end{table}
+
+y obtenemos como resultado la palabra \textbf{"humus"}.
+
+
+\item Para el criptograma ``btvtvshz'' hacemos lo mismo:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Desp.} & \textbf{B} & \textbf{T} & \textbf{V} & \textbf{T} & \textbf{V} & \textbf{S} & \textbf{H} & \textbf{Z} & \textbf{Resultado} \\
+\hline
+1  & a & s & u & s & u & r & g & y & asusurgy \\
+2  & z & r & t & r & t & q & f & x & zrtrtqfx \\
+3  & y & q & s & q & s & p & e & w & yqsqspew \\
+4  & x & p & r & p & r & o & d & v & xprprodv \\
+5  & w & o & q & o & q & ñ & c & u & woqoq\~{n}cu \\
+6  & v & ñ & p & ñ & p & n & b & t & v\~{n}p\~{n}pnbt \\
+7  & u & n & o & n & o & m & a & s & \textbf{unonomas} \\
+8  & t & m & ñ & m & ñ & l & z & r & tmñm\~{n}lzr \\
+9  & s & l & n & l & n & k & y & q & slnlnkyq \\
+10 & r & k & m & k & m & j & x & p & rkmkmjxp \\
+11 & q & j & l & j & l & i & w & o & qjljliwo \\
+12 & p & i & k & i & k & h & v & ñ & pikikhv\~{n} \\
+13 & o & h & j & h & j & g & u & n & ohjhjgun \\
+14 & ñ & g & i & g & i & f & t & m & \~{n}gigiftm \\
+15 & n & f & h & f & h & e & s & l & nfhfhesl \\
+16 & m & e & g & e & g & d & r & k & megegdrk \\
+17 & l & d & f & d & f & c & q & j & ldfdfcqj \\
+18 & k & c & e & c & e & b & p & i & kcecebpi \\
+19 & j & b & d & b & d & a & o & h & jbdbdaoh \\
+20 & i & a & c & a & c & z & ñ & g & iacacz\~{n}g \\
+21 & h & z & b & z & b & y & ñ & f & hzbzby\~{n}f \\
+22 & g & y & a & y & a & x & n & e & gyayaxne \\
+23 & f & x & z & x & z & w & m & d & fxzxzwmd \\
+24 & e & w & y & w & y & v & l & c & ewywyvlc \\
+25 & d & v & x & v & x & u & k & b & dvxvxukb \\
+26 & c & u & w & u & w & t & j & a & cuwuwtja \\
+\hline
+\end{tabular}
+\caption{Fuerza bruta sobre el criptograma ``btvtvshz''}
+\label{tab:cesar_enie}
+\end{table}
+
+Y obtenemos la frase decifrada \textbf{``uno nomás''}.
+
+
+\end{itemize}
+
+\subsection{Cifrado Hill y Playfair}
+
+
+\subsection{Cifrado Vigenere}
+
+\begin{itemize}
+	\item Para cifrar \textbf{``perteneció a una gran señor algo feudal y algo bruto''} con la clave
+	"poema" lo que haremos será crear una tabla donde pongamos todas las letras de la frase,
+	la repetición de la frase y el nuevo valor que obtienen las letras:
+
+           	\begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline
+            \textbf{Pos.} & \textbf{Mens.} & $M_i$ & \textbf{Clave} & $K_i$ & $M_i + K_i$ & $\bmod\ 27$ & \textbf{Cifrado} \\
+            \hline
+            1  & p & 16 & p & 16 & 32 & 5  & f \\
+            2  & e & 4  & o & 15 & 19 & 19 & s \\
+            3  & r & 18 & e & 4  & 22 & 22 & v \\
+            4  & t & 20 & m & 13 & 33 & 6  & f \\
+            5  & e & 4  & a & 0  & 4  & 4  & e \\
+            6  & n & 13 & p & 16 & 29 & 2  & c \\
+            7  & e & 4  & o & 15 & 19 & 19 & s \\
+            8  & c & 2  & e & 4  & 6  & 6  & g \\
+            9  & i & 8  & m & 13 & 21 & 21 & u \\
+            10 & o & 15 & a & 0  & 15 & 15 & o \\
+            11 & u & 21 & p & 16 & 37 & 10 & k \\
+            12 & n & 13 & o & 15 & 28 & 1  & b \\
+            13 & a & 0  & e & 4  & 4  & 4  & e \\
+            14 & g & 6  & m & 13 & 19 & 19 & s \\
+            15 & r & 18 & a & 0  & 18 & 18 & r \\
+            16 & a & 0  & p & 16 & 16 & 16 & p \\
+            17 & s & 19 & o & 15 & 34 & 7  & h \\
+            18 & e & 4  & e & 4  & 8  & 8  & i \\
+            19 & \~{n} & 14 & m & 13 & 27 & 0  & a \\
+            20 & o & 15 & a & 0  & 15 & 15 & o \\
+            21 & r & 18 & p & 16 & 34 & 7  & h \\
+            22 & a & 0  & o & 15 & 15 & 15 & o \\
+            23 & l & 11 & e & 4  & 15 & 15 & o \\
+            24 & g & 6  & m & 13 & 19 & 19 & s \\
+            25 & o & 15 & a & 0  & 15 & 15 & o \\
+            26 & f & 5  & p & 16 & 21 & 21 & v \\
+            27 & e & 4  & o & 15 & 19 & 19 & s \\
+            28 & u & 21 & e & 4  & 25 & 25 & y \\
+            29 & d & 3  & m & 13 & 16 & 16 & p \\
+            30 & a & 0  & a & 0  & 0  & 0  & a \\
+            31 & l & 11 & p & 16 & 27 & 0  & a \\
+            32 & y & 25 & o & 15 & 40 & 13 & n \\
+            33 & a & 0  & e & 4  & 4  & 4  & e \\
+            34 & l & 11 & m & 13 & 24 & 24 & x \\
+            35 & g & 6  & a & 0  & 6  & 6  & g \\
+            36 & o & 15 & p & 16 & 31 & 4  & e \\
+            37 & b & 1  & o & 15 & 16 & 16 & p \\
+            38 & r & 18 & e & 4  & 22 & 22 & v \\
+            39 & u & 21 & m & 13 & 34 & 7  & h \\
+            40 & t & 20 & a & 0  & 20 & 20 & t \\
+            41 & o & 15 & p & 16 & 31 & 4  & e \\
+            \hline
+            \end{tabular}
+            \caption{Cifrado Vigen\`{e}re del mensaje ``pertenecio a una gran
+            se\~{n}or algo feudal y algo bruto'' con clave ``poema''}
+            \label{tab:vigenere_cifrado}
+            \end{table}
+
+            Eso resulta en el criptograma \textbf{``fsvfecsguokbesrphiaohoosovsypaanexgepvhte''}
+
+    \item Para descifrar el criptograma \textbf{``isowabofmsxhinujdceuthtaspzianeg''} realizamos el proceso
+    inverso a la tabla anterior, pero de igual manera en una tabla y con la misma clave, de modo que
+    queda lo siguiente:
+
+        \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Pos.} & \textbf{Cifrado} & $C_i$ & \textbf{Clave} & $K_i$ & $C_i-K_i$ & $\bmod\ 27$ & \textbf{Plano} \\
+        \hline
+        1  & i & 8  & p & 16 & -8  & 19 & s \\
+        2  & s & 19 & o & 15 & 4   & 4  & e \\
+        3  & o & 15 & e & 4  & 11  & 11 & l \\
+        4  & w & 23 & m & 12 & 11  & 11 & l \\
+        5  & a & 0  & a & 0  & 0   & 0  & a \\
+        6  & b & 1  & p & 16 & -15 & 12 & m \\
+        7  & o & 15 & o & 15 & 0   & 0  & a \\
+        8  & f & 5  & e & 4  & 1   & 1  & b \\
+        9  & m & 12 & m & 12 & 0   & 0  & a \\
+        10 & s & 19 & a & 0  & 19  & 19 & s \\
+        11 & x & 24 & p & 16 & 8   & 8  & i \\
+        12 & h & 7  & o & 15 & -8  & 19 & s \\
+        13 & i & 8  & e & 4  & 4   & 4  & e \\
+        14 & n & 13 & m & 12 & 1   & 1  & b \\
+        15 & u & 21 & a & 0  & 21  & 21 & u \\
+        16 & j & 9  & p & 16 & -7  & 20 & t \\
+        17 & d & 3  & o & 15 & -12 & 15 & o \\
+        18 & c & 2  & e & 4  & -2  & 25 & y \\
+        19 & e & 4  & m & 12 & -8  & 19 & s \\
+        20 & u & 21 & a & 0  & 21  & 21 & u \\
+        21 & t & 20 & p & 16 & 4   & 4  & e \\
+        22 & h & 7  & o & 15 & -8  & 19 & s \\
+        23 & t & 20 & e & 4  & 16  & 16 & p \\
+        24 & a & 0  & m & 12 & -12 & 15 & o \\
+        25 & s & 19 & a & 0  & 19  & 19 & s \\
+        26 & p & 16 & p & 16 & 0   & 0  & a \\
+        27 & z & 26 & o & 15 & 11  & 11 & l \\
+        28 & i & 8  & e & 4  & 4   & 4  & e \\
+        29 & a & 0  & m & 12 & -12 & 15 & o \\
+        30 & n & 13 & a & 0  & 13  & 13 & n \\
+        31 & e & 4  & p & 16 & -12 & 15 & o \\
+        32 & g & 6  & o & 15 & -9  & 18 & r \\
+        \hline
+        \end{tabular}
+        \caption{Descifrado Vigen\`{e}re de ``isowabofmsxhinujdceuthtaspzianeg'' con clave ``poema''}
+        \label{tab:vigenere_descifrado}
+        \end{table}
+
+    Y obtenemos la frase \textbf{``se llamaba sisebuto y su esposa leonor''}
+
+    \item Y finalmente para descrifrar el criptograma \textbf{``tuu mrtsm pbcegg rm qphdr kk cmppeeyn mmayrb''}
+    con clave \textbf{``zhuangzi''} hacemos la siguiente tabla:
+
+        \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Pos.} & \textbf{Cifrado} & $C_i$ & \textbf{Clave} & $K_i$ & $C_i - K_i$ & $\bmod\ 26$ & \textbf{Plano} \\
+        \hline
+        1  & t & 19 & z & 25 & -6  & 20 & u \\
+        2  & u & 20 & h & 7  & 13  & 13 & n \\
+        3  & u & 20 & u & 20 & 0   & 0  & a \\
+        4  & m & 12 & a & 0  & 12  & 12 & m \\
+        5  & r & 17 & n & 13 & 4   & 4  & e \\
+        6  & t & 19 & g & 6  & 13  & 13 & n \\
+        7  & s & 18 & z & 25 & -7  & 19 & t \\
+        8  & m & 12 & i & 8  & 4   & 4  & e \\
+        9  & p & 15 & z & 25 & -10 & 16 & q \\
+        10 & b & 1  & h & 7  & -6  & 20 & u \\
+        11 & c & 2  & u & 20 & -18 & 8  & i \\
+        12 & e & 4  & a & 0  & 4   & 4  & e \\
+        13 & g & 6  & n & 13 & -7  & 19 & t \\
+        14 & g & 6  & g & 6  & 0   & 0  & a \\
+        15 & r & 17 & z & 25 & -8  & 18 & s \\
+        16 & m & 12 & i & 8  & 4   & 4  & e \\
+        17 & q & 16 & z & 25 & -9  & 17 & r \\
+        18 & p & 15 & h & 7  & 8   & 8  & i \\
+        19 & h & 7  & u & 20 & -13 & 13 & n \\
+        20 & d & 3  & a & 0  & 3   & 3  & d \\
+        21 & r & 17 & n & 13 & 4   & 4  & e \\
+        22 & k & 10 & g & 6  & 4   & 4  & e \\
+        23 & k & 10 & z & 25 & -15 & 11 & l \\
+        24 & c & 2  & i & 8  & -6  & 20 & u \\
+        25 & m & 12 & z & 25 & -13 & 13 & n \\
+        26 & p & 15 & h & 7  & 8   & 8  & i \\
+        27 & p & 15 & u & 20 & -5  & 21 & v \\
+        28 & e & 4  & a & 0  & 4   & 4  & e \\
+        29 & e & 4  & n & 13 & -9  & 17 & r \\
+        30 & y & 24 & g & 6  & 18  & 18 & s \\
+        31 & n & 13 & z & 25 & -12 & 14 & o \\
+        32 & m & 12 & i & 8  & 4   & 4  & e \\
+        33 & m & 12 & z & 25 & -13 & 13 & n \\
+        34 & a & 0  & h & 7  & -7  & 19 & t \\
+        35 & y & 24 & u & 20 & 4   & 4  & e \\
+        36 & r & 17 & a & 0  & 17  & 17 & r \\
+        37 & b & 1  & n & 13 & -12 & 14 & o \\
+        \hline
+        \end{tabular}
+        \caption{Descifrado Vigen\`{e}re de ``tuu mrtsm pbcegg rm qphdr kk cmppeeyn mmayrb`
+        con clave ``zhuangzi''.}
+        \label{tab:vigenere_zhuangzi}
+        \end{table}
+
+        Obteniendo la frase \textbf{``una mente quieta se rinde el universo entero``}
+
+
+\end{itemize}
+
+
+\subsection{Cifrado Afín}
+
+\begin{enumerate}
+
+\item ¿Qué es el Algoritmo de Euclides?
+
+El \textbf{Algoritmo de Euclides} es un método para calcular el \textbf{Máximo Común Divisor
+(mcd)} de dos enteros $a, b \in \mathbb{Z}$, con $b \neq 0$.
+
+Dados $a, b \in \mathbb{Z}$ con $a \geq b > 0$, se aplica el
+\textbf{algoritmo de división} repetidamente:
+
+\begin{align*}
+    a       &= q_0\, b      + r_0,      \quad 0 \leq r_0 < b      \\
+    b       &= q_1\, r_0    + r_1,      \quad 0 \leq r_1 < r_0    \\
+    r_0     &= q_2\, r_1    + r_2,      \quad 0 \leq r_2 < r_1    \\
+            &\;\vdots                                               \\
+    r_{n-2} &= q_n\, r_{n-1} + r_n,    \quad 0 \leq r_n < r_{n-1}\\
+    r_{n-1} &= q_{n+1}\, r_n + 0
+\end{align*}
+
+El proceso termina cuando el residuo es \textbf{cero}. El último residuo
+no nulo $r_n$ es el $mcd(a,b)$.
+
+\item Prueba de que $r_n = mcd(a,b)$
+
+\begin{proof}
+    Para cada $i \in \{0, 1, \ldots, n\}$, se tiene que $r_i = a - q_0 b$,
+    $r_i = b - q_1 r_0$, $r_i = r_0 - q_2 r_1$, $\ldots$, $r_i = r_{n-2} - q_n r_{n-1}$.
+
+    Por lo tanto, cada $r_i$ es una combinación lineal de $a$ y $b$. En particular,
+    $r_n$ es una combinación lineal de $a$ y $b$.
+
+    Además, cualquier divisor común de $a$ y $b$ también es un divisor común de cada
+    $r_i$, incluyendo a $r_n$. Por lo tanto, el máximo común divisor de $a$ y $b$
+    debe ser menor o igual a cualquier divisor común de $a$ y $b$, incluyendo a
+    $mcd(a,b)$.
+
+    Por otro lado, como $r_n$ es una combinación lineal de $a$ y $b$, cualquier divisor común
+    de $a$ y $b$ también debe ser un divisor común de $r_n$. Por lo tanto, el máximo común
+    divisor de $a$ y $b$ debe ser mayor o igual a cualquier divisor común de $a$ y $b$, incluyendo a $mcd(a,b)$.
+
+    Combinando ambas desigualdades, se concluye que $mcd(a,b) = r_n$.
+\end{proof}
+
+\item Si $a \in Z_m$ es invertible y $mcd(a,m) = 1$. Use la proposición anterior para demostrar:
+
+    \begin{tcolorbox}
+        Sean $A, B \in \{0, 26\}, mcd(A,27)=1$. La aplicación $f(A,B) : \mathbb{Z}_{27} \to \mathbb{Z}_{27}$
+        dada por $f_{(A,B)}x = Ax + B$ es biyectiva.
+    \end{tcolorbox}
+
+    \begin{proof}
+    Sean $x, y \in \mathbb{Z}_{27}$ tales que $f_{(A,B)}(x) = f_{(A,B)}(y)$.
+
+    Entonces:
+    \begin{align*}
+        Ax + B &\equiv Ay + B mod{27} \\
+        Ax     &\equiv Ay     mod{27}.
+    \end{align*}
+
+    Como $A$ es invertible en $\mathbb{Z}_{27}$, multiplicamos ambos lados
+    por $A^{-1}$:
+
+    \[
+        A^{-1}(Ax) \equiv A^{-1}(Ay) mod{27}
+        \implies x \equiv y mod{27}.
+    \]
+
+    Por tanto $x = y$ en $\mathbb{Z}_{27}$, lo que prueba que $f_{(A,B)}$ es \textbf{inyectiva}.
+
+    Luego, como $f_{(A,B)}$ es una función inyectiva entre dos conjuntos finitos del
+    mismo cardinal, es automáticamente \textbf{sobreyectiva}.
+    Por lo tanto, $f_{(A,B)}$ es \textbf{biyectiva}.
+    \end{proof}
+
+\end{enumerate}
